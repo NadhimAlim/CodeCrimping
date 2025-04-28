@@ -1,0 +1,29 @@
+#nongkrong-proyek-series .card {
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    border: none;
+  }
+  
+  #nongkrong-proyek-series .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  #nongkrong-proyek-series .card-img-top {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    height: 180px;
+    object-fit: cover;
+  }
+  
+  #nongkrong-proyek-series .btn-group .btn.active {
+    background-color: #0d6efd;
+    color: white;
+    border-color: #0d6efd;
+  }
+  
+  /* custom purple for AI badge */
+  .bg-purple {
+    background-color: #6f42c1 !important;
+  }
+  

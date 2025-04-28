@@ -1,0 +1,89 @@
+
+
+body {
+  font-family: "Nunito Sans", sans-serif; /* Gunakan font yang dipilih */
+  padding-top: 70px; /* Sesuaikan padding top */
+  color: #343a40; /* Warna teks default yang lebih gelap */
+  background-color: #f8f9fa; /* Warna latar belakang lembut */
+}
+.navbar {
+  background-color: #ffffff !important; /* Latar belakang navbar putih */
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05); /* Efek shadow yang lebih halus */
+}
+.navbar-brand {
+  font-weight: 800;
+  font-size: 2rem;
+  color: #007bff; /* Warna brand yang menonjol */
+}
+.navbar-nav .nav-link {
+  color: #495057;
+  font-weight: 500;
+  transition: color 0.3s ease-in-out;
+}
+.navbar-nav .nav-link:hover {
+  color: #007bff;
+}
+.hero {
+  text-align: center;
+  padding: 120px 20px;
+  background: linear-gradient(
+    135deg,
+    #e9ecef,
+    #f8f9fa
+  ); /* Gradien lembut */
+}
+.hero h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #212529;
+  margin-bottom: 1.5rem;
+}
+.hero .lead {
+  font-size: 1.25rem;
+  color: #6c757d;
+  margin-bottom: 2.5rem;
+}
+.btn-success {
+  background-color: #28a745;
+  border-color: #28a745;
+  transition: background-color 0.3s ease-in-out,
+    border-color 0.3s ease-in-out;
+}
+.btn-success:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+.code-window {
+  background: #282c34; /* Warna latar belakang editor yang populer */
+  border-radius: 10px;
+  padding: 1.5rem;
+  overflow: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e0f7fa; /* Warna latar belakang ikon yang lembut */
+  color: #00acc1; /* Warna ikon */
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin-right: 1.2rem;
+  font-size: 1.5rem;
+}
+#join .card {
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease-in-out;
+}
+#join .card:hover {
+  transform: translateY(-5px);
+}
+#join .card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}

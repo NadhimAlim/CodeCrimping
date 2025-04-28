@@ -1,0 +1,11 @@
+.hover-white:hover {
+    color: white !important;
+  }
+  .hover-primary:hover {
+    color: #0d6efd !important;
+  }
+  .footer-logo {
+    border-left: 4px solid #0d6efd;
+    padding-left: 15px;
+  }
+  
