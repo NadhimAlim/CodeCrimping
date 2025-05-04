@@ -1,162 +1,191 @@
-import React, { useState, useMemo } from 'react';
-import './css/HangoutSeries.css';
+import React, { useState, useMemo } from "react";
+import "./css/HangoutSeries.css";
 
 // Category configuration with icons and colors
 const categories = {
-  'Web Development': {
-    icon: 'bi-laptop',
-    color: 'info',
-    textColor: 'white'
+  "Web Development": {
+    icon: "bi-laptop",
+    color: "info",
+    textColor: "white",
   },
-  'Mobile': {
-    icon: 'bi-phone',
-    color: 'success',
-    textColor: 'white'
+  Mobile: {
+    icon: "bi-phone",
+    color: "success",
+    textColor: "white",
   },
-  'Game Dev': {
-    icon: 'bi-controller',
-    color: 'danger',
-    textColor: 'white'
+  "Game Dev": {
+    icon: "bi-controller",
+    color: "danger",
+    textColor: "white",
   },
-  'IoT': {
-    icon: 'bi-cpu',
-    color: 'warning',
-    textColor: 'dark'
+  IoT: {
+    icon: "bi-cpu",
+    color: "warning",
+    textColor: "dark",
   },
-  'AI': {
-    icon: 'bi-robot',
-    color: 'purple',
-    textColor: 'white'
+  AI: {
+    icon: "bi-robot",
+    color: "purple",
+    textColor: "white",
   },
-  'Blockchain': {
-    icon: 'bi-currency-bitcoin',
-    color: 'primary',
-    textColor: 'white'
+  Blockchain: {
+    icon: "bi-currency-bitcoin",
+    color: "primary",
+    textColor: "white",
   },
-  'Open Source': {
-    icon: 'bi-github',
-    color: 'dark',
-    textColor: 'white'
-  }
+  "Open Source": {
+    icon: "bi-github",
+    color: "dark",
+    textColor: "white",
+  },
 };
 
 const initialEvents = [
   {
     id: 1,
-    category: 'Web Development',
-    title: 'Sesi #1: Web Apps Kekinian',
-    date: '2025-05-10',
-    time: '19:00 WIB',
-    location: 'Kopi Kenangan Senja',
-    description: 'Ngobrolin ide-ide aplikasi web modern dengan React dan Node.js.',
+    category: "Web Development",
+    title: "Sesi #1: Web Apps Kekinian",
+    date: "2025-05-10",
+    time: "19:00 WIB",
+    location: "Kopi Kenangan Senja",
+    description:
+      "Ngobrolin ide-ide aplikasi web modern dengan React dan Node.js.",
     capacity: 30,
     registered: 15,
   },
   {
     id: 2,
-    category: 'Mobile',
-    title: 'Sesi #2: Aplikasi Mobile Cross-Platform',
-    date: '2025-05-17',
-    time: '19:00 WIB',
-    location: 'Kopi Kenangan Senja',
-    description: 'Diskusi pengembangan aplikasi mobile dengan Flutter dan React Native.',
+    category: "Mobile",
+    title: "Sesi #2: Aplikasi Mobile Cross-Platform",
+    date: "2025-05-17",
+    time: "19:00 WIB",
+    location: "Kopi Kenangan Senja",
+    description:
+      "Diskusi pengembangan aplikasi mobile dengan Flutter dan React Native.",
     capacity: 25,
     registered: 18,
   },
   {
     id: 3,
-    category: 'Game Dev',
-    title: 'Sesi #3: Dunia Game Development',
-    date: '2025-05-24',
-    time: '19:00 WIB',
-    location: 'Kopi Kenangan Senja',
-    description: 'Membahas engine game populer seperti Unity dan Unreal Engine.',
+    category: "Game Dev",
+    title: "Sesi #3: Dunia Game Development",
+    date: "2025-05-24",
+    time: "19:00 WIB",
+    location: "Kopi Kenangan Senja",
+    description:
+      "Membahas engine game populer seperti Unity dan Unreal Engine.",
     capacity: 20,
     registered: 12,
   },
   {
     id: 4,
-    category: 'IoT',
-    title: 'Sesi #4: Internet of Things',
-    date: '2025-05-31',
-    time: '19:00 WIB',
-    location: 'Kopi Kenangan Senja',
-    description: 'Eksplorasi proyek IoT dengan Arduino dan Raspberry Pi.',
+    category: "IoT",
+    title: "Sesi #4: Internet of Things",
+    date: "2025-05-31",
+    time: "19:00 WIB",
+    location: "Kopi Kenangan Senja",
+    description: "Eksplorasi proyek IoT dengan Arduino dan Raspberry Pi.",
     capacity: 15,
     registered: 10,
   },
   {
     id: 5,
-    category: 'AI',
-    title: 'Sesi #5: Kecerdasan Buatan',
-    date: '2025-06-07',
-    time: '19:00 WIB',
-    location: 'Kopi Kenangan Senja',
-    description: 'Pengenalan machine learning dan neural networks.',
+    category: "AI",
+    title: "Sesi #5: Kecerdasan Buatan",
+    date: "2025-06-07",
+    time: "19:00 WIB",
+    location: "Kopi Kenangan Senja",
+    description: "Pengenalan machine learning dan neural networks.",
     capacity: 25,
     registered: 20,
   },
   {
     id: 6,
-    category: 'Blockchain',
-    title: 'Sesi #6: Teknologi Blockchain',
-    date: '2025-06-14',
-    time: '19:00 WIB',
-    location: 'Kopi Kenangan Senja',
-    description: 'Memahami dasar-dasar blockchain dan smart contracts.',
+    category: "Blockchain",
+    title: "Sesi #6: Teknologi Blockchain",
+    date: "2025-06-14",
+    time: "19:00 WIB",
+    location: "Kopi Kenangan Senja",
+    description: "Memahami dasar-dasar blockchain dan smart contracts.",
     capacity: 20,
     registered: 15,
   },
   {
     id: 7,
-    category: 'Open Source',
-    title: 'Sesi #7: Kontribusi Open Source',
-    date: '2025-06-21',
-    time: '19:00 WIB',
-    location: 'Kopi Kenangan Senja',
-    description: 'Bagaimana memulai kontribusi ke proyek open source.',
+    category: "Open Source",
+    title: "Sesi #7: Kontribusi Open Source",
+    date: "2025-06-21",
+    time: "19:00 WIB",
+    location: "Kopi Kenangan Senja",
+    description: "Bagaimana memulai kontribusi ke proyek open source.",
     capacity: 30,
     registered: 22,
   },
   {
     id: 8,
-    category: 'Web Development',
-    title: 'Sesi #8: Web Performance Optimization',
-    date: '2025-06-28',
-    time: '19:00 WIB',
-    location: 'Kopi Kenangan Senja',
-    description: 'Teknik optimasi performa website modern.',
+    category: "Web Development",
+    title: "Sesi #8: Web Performance Optimization",
+    date: "2025-06-28",
+    time: "19:00 WIB",
+    location: "Kopi Kenangan Senja",
+    description: "Teknik optimasi performa website modern.",
     capacity: 25,
     registered: 18,
-  }
+  },
 ];
 
 export default function HangoutSeries() {
+  // State yang sudah ada...
+  const [showModal, setShowModal] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState(null);
+
+  // Tambahkan fungsi ini:
+  const handleRegistration = (event) => {
+    setSelectedEvent(event);
+    setShowModal(true);
+  };
+
+  const proceedToRegistration = () => {
+    const googleFormUrl = "https://docs.google.com/forms/d/177ebSVsJjzBPC2Ly9BFTAbe8wklrKW-R7Kx5iTSC3zU/viewform?edit_requested=true";
+    
+    // Buka form di tab baru
+    const newWindow = window.open(googleFormUrl, '_blank');
+    
+    // Tampilkan alert setelah 2 detik (opsional)
+    setTimeout(() => {
+      alert(`Pendaftaran berhasil! Silakan bergabung di grup WhatsApp:\nhttps://chat.whatsapp.com/BIRvio1XqWi06VhJykphcG`);
+    }, 2000);
+    
+    setShowModal(false);
+  };
+
   const [sortNewest, setSortNewest] = useState(true);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [activeCategory, setActiveCategory] = useState('All');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [activeCategory, setActiveCategory] = useState("All");
 
   const displayed = useMemo(() => {
     let list = [...initialEvents];
-    
+
     // Sort by date
-    list.sort((a, b) => sortNewest 
-      ? new Date(b.date) - new Date(a.date) 
-      : new Date(a.date) - new Date(b.date));
-    
+    list.sort((a, b) =>
+      sortNewest
+        ? new Date(b.date) - new Date(a.date)
+        : new Date(a.date) - new Date(b.date)
+    );
+
     // Filter by search term
     if (searchTerm) {
       const term = searchTerm.toLowerCase();
-      list = list.filter(e =>
+      list = list.filter((e) =>
         `${e.title} ${e.description} ${e.category}`.toLowerCase().includes(term)
       );
     }
-    
+
     // Filter by category
-    if (activeCategory !== 'All') {
-      list = list.filter(e => e.category === activeCategory);
+    if (activeCategory !== "All") {
+      list = list.filter((e) => e.category === activeCategory);
     }
-    
+
     return list;
   }, [sortNewest, searchTerm, activeCategory]);
 
@@ -166,7 +195,8 @@ export default function HangoutSeries() {
         <div className="text-center mb-5">
           <h2 className="fw-bold">Nongkrong Santai & Brainstorming Proyek</h2>
           <p className="lead text-muted">
-            Yuk, ikutan seri nongkrong santai kita sambil bahas ide-ide proyek keren!
+            Yuk, ikutan seri nongkrong santai kita sambil bahas ide-ide proyek
+            keren!
           </p>
         </div>
 
@@ -177,13 +207,17 @@ export default function HangoutSeries() {
               <span className="me-2 text-muted">Urutkan:</span>
               <div className="btn-group">
                 <button
-                  className={`btn btn-sm ${sortNewest ? 'btn-primary' : 'btn-outline-primary'}`}
+                  className={`btn btn-sm ${
+                    sortNewest ? "btn-primary" : "btn-outline-primary"
+                  }`}
                   onClick={() => setSortNewest(true)}
                 >
                   Terbaru
                 </button>
                 <button
-                  className={`btn btn-sm ${!sortNewest ? 'btn-primary' : 'btn-outline-primary'}`}
+                  className={`btn btn-sm ${
+                    !sortNewest ? "btn-primary" : "btn-outline-primary"
+                  }`}
                   onClick={() => setSortNewest(false)}
                 >
                   Terlama
@@ -191,62 +225,69 @@ export default function HangoutSeries() {
               </div>
             </div>
           </div>
-          
+
           <div className="col-md-4 mb-3 mb-md-0">
             <div className="category-filter">
-              <select 
+              <select
                 className="form-select form-select-sm"
                 value={activeCategory}
                 onChange={(e) => setActiveCategory(e.target.value)}
               >
                 <option value="All">Semua Kategori</option>
-                {Object.keys(categories).map(cat => (
-                  <option key={cat} value={cat}>{cat}</option>
+                {Object.keys(categories).map((cat) => (
+                  <option key={cat} value={cat}>
+                    {cat}
+                  </option>
                 ))}
               </select>
             </div>
           </div>
-          
+
           <div className="col-md-4">
-  <div className="search-box position-relative">
-    <input
-      type="text"
-      className="form-control form-control-sm ps-4"
-      placeholder="Cari event (judul, deskripsi, kategori)..."
-      value={searchTerm}
-      onChange={(e) => setSearchTerm(e.target.value)}
-      aria-label="Search events"
-    />
-    <i className="bi bi-search position-absolute start-0 top-50 translate-middle-y ms-3 text-muted"></i>
-    {searchTerm && (
-      <button
-        className="btn btn-sm position-absolute end-0 top-50 translate-middle-y me-2 text-muted"
-        onClick={() => setSearchTerm('')}
-        aria-label="Clear search"
-      >
-        <i className="bi bi-x"></i>
-      </button>
-    )}
-  </div>
-</div>
+            <div className="search-box position-relative">
+              <input
+                type="text"
+                className="form-control form-control-sm ps-4"
+                placeholder="Cari event (judul, deskripsi, kategori)..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                aria-label="Search events"
+              />
+              <i className="bi bi-search position-absolute start-0 top-50 translate-middle-y ms-3 text-muted"></i>
+              {searchTerm && (
+                <button
+                  className="btn btn-sm position-absolute end-0 top-50 translate-middle-y me-2 text-muted"
+                  onClick={() => setSearchTerm("")}
+                  aria-label="Clear search"
+                >
+                  <i className="bi bi-x"></i>
+                </button>
+              )}
+            </div>
+          </div>
         </div>
 
         {/* Category Quick Filter */}
         <div className="category-scroll mb-4">
           <div className="d-flex flex-nowrap overflow-auto pb-2">
             <button
-              className={`btn btn-sm me-2 ${activeCategory === 'All' ? 'btn-primary' : 'btn-outline-primary'}`}
-              onClick={() => setActiveCategory('All')}
+              className={`btn btn-sm me-2 ${
+                activeCategory === "All" ? "btn-primary" : "btn-outline-primary"
+              }`}
+              onClick={() => setActiveCategory("All")}
             >
               Semua
             </button>
             {Object.entries(categories).map(([name, config]) => (
               <button
                 key={name}
-                className={`btn btn-sm me-2 d-flex align-items-center ${activeCategory === name ? 'active-category' : ''}`}
+                className={`btn btn-sm me-2 d-flex align-items-center ${
+                  activeCategory === name ? "active-category" : ""
+                }`}
                 style={{
-                  backgroundColor: activeCategory === name ? `var(--bs-${config.color})` : '',
-                  color: activeCategory === name ? config.textColor : ''
+                  backgroundColor:
+                    activeCategory === name ? `var(--bs-${config.color})` : "",
+                  color: activeCategory === name ? config.textColor : "",
                 }}
                 onClick={() => setActiveCategory(name)}
               >
@@ -260,13 +301,13 @@ export default function HangoutSeries() {
         {/* Cards */}
         {displayed.length > 0 ? (
           <div className="row g-4" id="event-container">
-            {displayed.map(evt => {
+            {displayed.map((evt) => {
               const categoryConfig = categories[evt.category];
               return (
                 <div key={evt.id} className="col-xl-3 col-lg-4 col-md-6">
                   <div className="card shadow-sm border-0 h-100 hover-effect">
                     <div className="card-body p-4 d-flex flex-column">
-                      <span 
+                      <span
                         className={`badge category-badge bg-${categoryConfig.color} text-${categoryConfig.textColor} mb-3`}
                       >
                         <i className={`bi ${categoryConfig.icon} me-1`}></i>
@@ -276,29 +317,36 @@ export default function HangoutSeries() {
                       <div className="event-meta mb-3">
                         <p className="text-muted mb-2">
                           <i className="bi bi-calendar me-2"></i>
-                          {new Date(evt.date).toLocaleDateString('id-ID', { 
-                            weekday: 'long', 
-                            day: 'numeric', 
-                            month: 'long', 
-                            year: 'numeric' 
+                          {new Date(evt.date).toLocaleDateString("id-ID", {
+                            weekday: "long",
+                            day: "numeric",
+                            month: "long",
+                            year: "numeric",
                           })}
                         </p>
                         <p className="text-muted mb-2">
-                          <i className="bi bi-clock me-2"></i>{evt.time}
+                          <i className="bi bi-clock me-2"></i>
+                          {evt.time}
                         </p>
                         <p className="text-muted">
-                          <i className="bi bi-geo-alt me-2"></i>{evt.location}
+                          <i className="bi bi-geo-alt me-2"></i>
+                          {evt.location}
                         </p>
                       </div>
                       <p className="card-text mb-4">{evt.description}</p>
                       <div className="d-flex justify-content-between align-items-center mt-auto">
-                        <div className="progress w-100 me-3" style={{ height: '6px' }}>
-                          <div 
-                            className="progress-bar" 
-                            role="progressbar" 
-                            style={{ 
-                              width: `${(evt.registered / evt.capacity) * 100}%`,
-                              backgroundColor: `var(--bs-${categoryConfig.color})`
+                        <div
+                          className="progress w-100 me-3"
+                          style={{ height: "6px" }}
+                        >
+                          <div
+                            className="progress-bar"
+                            role="progressbar"
+                            style={{
+                              width: `${
+                                (evt.registered / evt.capacity) * 100
+                              }%`,
+                              backgroundColor: `var(--bs-${categoryConfig.color})`,
                             }}
                             aria-valuenow={evt.registered}
                             aria-valuemin={0}
@@ -309,8 +357,17 @@ export default function HangoutSeries() {
                           {evt.registered}/{evt.capacity}
                         </span>
                       </div>
-                      <button className="btn btn-primary btn-sm mt-3 w-100">
+                      {/* <button className="btn btn-primary btn-sm mt-3 w-100">
                         Daftar Sekarang
+                      </button> */}
+                      <button
+                        className="btn btn-primary btn-sm mt-3 w-100"
+                        onClick={() => handleRegistration(evt)}
+                        disabled={evt.registered >= evt.capacity}
+                      >
+                        {evt.registered >= evt.capacity
+                          ? "Kuota Penuh"
+                          : "Daftar Sekarang"}
                       </button>
                     </div>
                   </div>
@@ -322,11 +379,11 @@ export default function HangoutSeries() {
           <div className="text-center py-5">
             <i className="bi bi-calendar-x fs-1 text-muted mb-3"></i>
             <h5 className="text-muted">Tidak ada event yang ditemukan</h5>
-            <button 
+            <button
               className="btn btn-link text-primary"
               onClick={() => {
-                setSearchTerm('');
-                setActiveCategory('All');
+                setSearchTerm("");
+                setActiveCategory("All");
               }}
             >
               Reset filter
@@ -339,18 +396,83 @@ export default function HangoutSeries() {
           <nav className="mt-5">
             <ul className="pagination justify-content-center">
               <li className="page-item disabled">
-                <a className="page-link" href="#" tabIndex="-1" aria-disabled="true">Previous</a>
+                <a
+                  className="page-link"
+                  href="#"
+                  tabIndex="-1"
+                  aria-disabled="true"
+                >
+                  Previous
+                </a>
               </li>
-              <li className="page-item active"><a className="page-link" href="#">1</a></li>
-              <li className="page-item"><a className="page-link" href="#">2</a></li>
-              <li className="page-item"><a className="page-link" href="#">3</a></li>
+              <li className="page-item active">
+                <a className="page-link" href="#">
+                  1
+                </a>
+              </li>
               <li className="page-item">
-                <a className="page-link" href="#">Next</a>
+                <a className="page-link" href="#">
+                  2
+                </a>
+              </li>
+              <li className="page-item">
+                <a className="page-link" href="#">
+                  3
+                </a>
+              </li>
+              <li className="page-item">
+                <a className="page-link" href="#">
+                  Next
+                </a>
               </li>
             </ul>
           </nav>
         )}
       </div>
+      {/* Modal Konfirmasi */}
+{showModal && (
+  <div className="modal fade show" style={{ display: 'block', backgroundColor: 'rgba(0,0,0,0.5)' }}>
+    <div className="modal-dialog modal-dialog-centered">
+      <div className="modal-content">
+        <div className="modal-header">
+          <h5 className="modal-title">Konfirmasi Pendaftaran</h5>
+          <button 
+            type="button" 
+            className="btn-close" 
+            onClick={() => setShowModal(false)}
+          ></button>
+        </div>
+        <div className="modal-body">
+          <p>Anda akan mendaftar untuk event:</p>
+          <h6 className="fw-bold">{selectedEvent?.title}</h6>
+          <p className="mt-3">Setelah mengisi form, Anda akan mendapatkan link grup WhatsApp.</p>
+        </div>
+        <div className="modal-footer">
+          <button 
+            type="button" 
+            className="btn btn-secondary" 
+            onClick={() => setShowModal(false)}
+          >
+            Batal
+          </button>
+          <button 
+            type="button" 
+            className="btn btn-primary"
+            onClick={proceedToRegistration}
+          >
+            Lanjut ke Form Pendaftaran
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
     </section>
+
+      
+
+    
   );
+
+  
 }
