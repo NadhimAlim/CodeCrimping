@@ -74,17 +74,17 @@ export default function Footer() {
             <p className="text-white-50">
               Subscribe to our newsletter for the latest updates and offers.
             </p>
-            <form className="mb-3">
-              <div className="input-group">
-                <input
-                  type="email"
-                  className="form-control bg-secondary border-0"
-                  placeholder="Your email"
-                  aria-label="Your email"
-                />
-                <button className="btn btn-primary" type="submit">Subscribe</button>
-              </div>
-            </form>
+            <form className="d-flex gap-2">  {/* Ubah ke flex dengan gap */}
+    <input
+      type="email"
+      className="form-control bg-secondary border-0 flex-grow-1"
+      placeholder="Your email"
+      aria-label="Your email"
+    />
+    <button className="btn btn-primary px-3" type="submit">
+      Subscribe
+    </button>
+  </form>
             <div className="social-icons">
               <h5 className="text-white mb-3 border-bottom pb-2">Follow Us</h5>
               <div className="d-flex gap-3">

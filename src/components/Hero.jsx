@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-export default function Hero() {
+export default function HeroPage({ setShowLogin }) {
   return (
     <section className="hero">
       <div className="container">
@@ -11,9 +11,12 @@ export default function Hero() {
           Berkolaborasi dalam Proyek Impian, Membangun Jaringan, dan
           Mengembangkan Diri Bersama.
         </p>
-        <a href="#join" className="btn btn-success btn-lg">
+        <button
+          onClick={() => setShowLogin(true)}
+          className="btn btn-success btn-lg join-button"
+        >
           Mari Bergabung Sekarang <i className="fas fa-arrow-right ms-2"></i>
-        </a>
+        </button>
       </div>
     </section>
   );

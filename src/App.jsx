@@ -8,10 +8,17 @@ import Projects from './components/Project'
 import HangoutSeries from './HangoutSeries'
 import Footer from './Footer'
 import './hero.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LoginSignupForm from './components/login/LoginSignupForm'
+import HeroPage from './components/Hero'
+// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// import HomePage from './components/HomePage'; // Komponen dengan tombol bergabung
+// import LoginSignupForm from './components/LoginSignupForm';
 
 
 
 function App() {
+  const [showLogin, setShowLogin] = useState(false);
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light fixed-top">
@@ -47,11 +54,25 @@ function App() {
         </div>
       </nav>
 
-      <Hero />
+    
+      
+
+      <Hero onJoinClick={() => setShowLogin(true)} />
       <JoinKuy/>
       <Projects/>
       <HangoutSeries/>
       <Footer/>
+
+      
+
+      {/* Modal Login */}
+      {showLogin && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <LoginSignupForm onClose={() => setShowLogin(false)} />
+          </div>
+        </div>
+      )}
     </>
   );
 }

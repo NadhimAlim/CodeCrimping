@@ -1,29 +1,173 @@
+/* Base Styles */
+#nongkrong-proyek-series {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#nongkrong-proyek-series .container {
+  max-width: 1200px;
+}
+
+/* Category Styles */
+.category-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.category-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.category-scroll .btn {
+  white-space: nowrap;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.category-scroll .btn:hover {
+  transform: translateY(-2px);
+}
+
+.category-scroll .active-category {
+  font-weight: 500;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Card Styles */
 #nongkrong-proyek-series .card {
-    border-radius: 12px;
-    transition: all 0.3s ease;
-    border: none;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  border: none;
+  overflow: hidden;
+}
+
+#nongkrong-proyek-series .hover-effect:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+#nongkrong-proyek-series .card-body {
+  position: relative;
+  z-index: 1;
+}
+
+/* Category Badge */
+.category-badge {
+  padding: 0.5em 1em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  transition: all 0.3s ease;
+}
+
+#nongkrong-proyek-series .card:hover .category-badge {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Text Styles */
+#nongkrong-proyek-series .card-title {
+  font-size: 1.1rem;
+  line-height: 1.4;
+  min-height: 3.2em;
+}
+
+#nongkrong-proyek-series .card-text {
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Event Meta */
+.event-meta {
+  font-size: 0.85rem;
+}
+
+/* Button Styles */
+#nongkrong-proyek-series .btn-primary {
+  background-color: var(--bs-primary);
+  border: none;
+  border-radius: 6px;
+  padding: 0.5em 1em;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+#nongkrong-proyek-series .btn-primary:hover {
+  background-color: #0b5ed7;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(11, 94, 215, 0.3);
+}
+
+/* Empty State */
+#nongkrong-proyek-series .empty-state {
+  min-height: 300px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 767.98px) {
+  #nongkrong-proyek-series .card-title {
+    font-size: 1rem;
   }
   
-  #nongkrong-proyek-series .card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  #nongkrong-proyek-series .card-text {
+    font-size: 0.85rem;
   }
   
-  #nongkrong-proyek-series .card-img-top {
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-    height: 180px;
-    object-fit: cover;
+  .category-scroll {
+    overflow-x: auto;
+    padding-bottom: 8px;
   }
-  
-  #nongkrong-proyek-series .btn-group .btn.active {
-    background-color: #0d6efd;
-    color: white;
-    border-color: #0d6efd;
+}
+
+/* Search Box Styles */
+.search-box {
+  transition: all 0.3s ease;
+}
+
+.search-box input {
+  padding-left: 2rem;
+  border-radius: 20px;
+  border: 1px solid #dee2e6;
+  transition: all 0.3s ease;
+}
+
+.search-box input:focus {
+  border-color: #86b7fe;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  outline: none;
+}
+
+.search-box .bi-search {
+  z-index: 10;
+}
+
+.search-box .btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  width: 1.2rem;
+  height: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-box .btn:hover {
+  color: #dc3545 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+  .search-box input {
+    font-size: 0.875rem;
   }
-  
-  /* custom purple for AI badge */
-  .bg-purple {
-    background-color: #6f42c1 !important;
-  }
-  
+}
